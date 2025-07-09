@@ -3,10 +3,6 @@ package com.devraphael.movieflix.entities;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.devraphael.movieflix.entities.Movie;
-import com.devraphael.movieflix.entities.Review;
-import com.devraphael.movieflix.entities.User;
-
 public class ReviewTests {
 
 	@Test
