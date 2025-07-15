@@ -1,6 +1,7 @@
 package com.devraphael.movieflix.dto;
 
 import com.devraphael.movieflix.entities.Review;
+import com.devraphael.movieflix.projections.ReviewProjection;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -35,10 +36,18 @@ public class ReviewDTO {
 		id = entity.getId();
 		text = entity.getText();
 		movieId = entity.getMovie().getId();
-		;
 		userId = entity.getUser().getId();
 		userName = entity.getUser().getName();
 		userEmail = entity.getUser().getEmail();
+	}
+	
+	public ReviewDTO(ReviewProjection projection) {
+		id = projection.getId();
+		text = projection.getText();
+		movieId = projection.getMovieId();
+		userId = projection.getUserId();
+		userName = projection.getUserName();
+		userEmail = projection.getUserEmail();
 	}
 
 	public Long getId() {

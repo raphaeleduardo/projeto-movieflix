@@ -21,7 +21,7 @@ public class MovieService {
 
 	@Autowired
 	private MovieRepository repository;
-	
+
 	@Autowired
 	private GenreRepository genreRepository;
 
@@ -34,7 +34,16 @@ public class MovieService {
 
 	@Transactional(readOnly = true)
 	public Page<MovieCardDTO> findByGenre(Long genreId, Pageable pageable) {
-		Genre genre = (genreId == 0) ? null : genreRepository.getReferenceById(genreId);
+		Genre genre = new Genre();
+		if (genreId == 0) {
+			genre = null;
+		} else {
+			genre = genreRepository.getReferenceById(genreId);
+		}
+		/*
+		 * Mesma coisa do IF/ELSE acima: Genre genre = (genreId == 0) ? null
+		 * :genreRepository.getReferenceById(genreId);
+		 */
 		Page<Movie> page = repository.searchByGenre(genre, pageable);
 		return page.map(x -> new MovieCardDTO(x));
 	}
